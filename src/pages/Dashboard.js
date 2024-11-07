@@ -8,6 +8,8 @@ function Dashboard() {
 
   const handleLogout = () => {
     localStorage.removeItem('authenticated');
+    localStorage.clear();
+    sessionStorage.clear();
     navigate('/');
   };
 

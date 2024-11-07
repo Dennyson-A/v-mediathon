@@ -4,7 +4,7 @@ import axios from 'axios';
 import Modal from 'react-modal'; 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './Upload.css'; // Import the updated CSS file
+import './Upload.css'; // Import the CSS file
 
 const token = localStorage.getItem('token');
 Modal.setAppElement('#root');
@@ -29,7 +29,7 @@ const Upload = () => {
   useEffect(() => {
     const fetchDirectoryStructure = async () => {
       try {
-        const response = await axios.get('http://172.16.44.65:8000/api/dirstructure/', {
+        const response = await axiosInstance.get('http://172.16.44.65:8000/api/dirstructure/', {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (response.status === 200) {
@@ -58,7 +58,7 @@ const Upload = () => {
     const data = { from_email, to_email, recipient_username: padded_recipient_username, directory_path };
 
     try {
-      const response = await axios.post('http://172.16.44.65:8000/api/zipfile/', data, {
+      const response = await axiosInstance.post('http://172.16.44.65:8000/api/zipfile/', data, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (response.status === 200) {
@@ -87,7 +87,7 @@ const Upload = () => {
     };
 
     try {
-      const response = await axios.post('http://172.16.44.65:8000/api/schedule/', data, {
+      const response = await axiosInstance.post('http://172.16.44.65:8000/api/schedule/', data, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (response.status === 201) {
